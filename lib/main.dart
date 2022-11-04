@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uptodo_app/screens/intro_page.dart';
+import 'package:uptodo_app/screens/main_page.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const IntroPage(),
+      home:  MainPage(),
     );
   }
 }
