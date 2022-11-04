@@ -39,14 +39,16 @@ class TaskItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(height: 8),
-                Text(
-                  TodoCategory.categories[model!.categoryId].name.toString(),
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700),
+                Container(
+                  width: 150,
+                  child: Text(
+                    model!.title.toString(),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ),
-                //SvgPicture.asset(TodoCategory)
                 const SizedBox(height: 15),
                 Text(
                   TimeUtils.formatToMyTime(DateTime.parse(model!.date)),
@@ -55,6 +57,8 @@ class TaskItem extends StatelessWidget {
               ],
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 IconButton(
                     onPressed: () {
@@ -94,27 +98,59 @@ class TaskItem extends StatelessWidget {
                       color: Colors.red,
                       size: 28,
                     )),
-                Container(
-                  width: 60,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(width: 2, color: MyColors.c8687E7)
-                  ),
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(MyImages.iconFlag),
-                        const SizedBox(width: 10,),
-                        Text(
-                          model?.priority.toString() ?? "-1",
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                      ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 35,
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(TodoCategory.categories[model!.categoryId].colorName),
+                      ),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(TodoCategory
+                              .categories[model!.categoryId].iconName
+                              .toString()),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            TodoCategory.categories[model!.categoryId].name
+                                .toString(),
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                    const SizedBox(width: 12,),
+                    Container(
+                      width: 60,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border:
+                              Border.all(width: 2, color: MyColors.c8687E7)),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(MyImages.iconFlag),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              model?.priority.toString() ?? "-1",
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             )

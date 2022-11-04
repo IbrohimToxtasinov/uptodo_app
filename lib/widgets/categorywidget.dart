@@ -21,7 +21,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.5095,
+      height: MediaQuery.of(context).size.height * 0.625,
       width: MediaQuery.of(context).size.height * 0.7,
       child: Column(
         children: [
@@ -30,9 +30,11 @@ class _CategoryPickerState extends State<CategoryPicker> {
           const Divider(thickness: 1, color: MyColors.c979797),
           const SizedBox(height: 10),
           Container(
-            height: 300,
+            height: 400,
             child: GridView.builder(
                 itemCount: TodoCategory.categories.length,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 4,

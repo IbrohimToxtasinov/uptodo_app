@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:uptodo_app/screens/main_page.dart';
 import 'package:uptodo_app/screens/onboarding_page.dart';
 import 'package:uptodo_app/utils/colors.dart';
 import 'package:uptodo_app/utils/images.dart';
@@ -18,7 +19,7 @@ class _IntroPageState extends State<IntroPage> {
     super.initState();
     Future.delayed(
       const Duration(seconds: 5),
-      () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const OnboardingPage())),
+      () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage())),
     );
   }
   @override

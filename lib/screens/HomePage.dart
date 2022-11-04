@@ -24,8 +24,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
-        child: Container(
-          height: 600,
+        child: SizedBox(
+          height: 670,
           child: Column(
             children: [
               Padding(
@@ -71,30 +71,33 @@ class _HomePageState extends State<HomePage> {
                           )
                         );
                       }
-                      return ListView.builder(
-                        itemCount: snapshot.data?.length ?? 0,
-                        itemBuilder: (context, index) {
-                          return TaskItem(
-                            model: snapshot.data?[index],
-                            onDeleted: () {
-                              setState(() {});
-                            },
-                            onSelected: () {
-                              showModalBottomSheet(
-                                backgroundColor: MyColors.c363636,
-                                context: context,
-                                builder: (context) {
-                                  return UpdateTaskWidget(
-                                    todo: snapshot.data![index],
-                                    onUpdatedTask: () {
-                                      setState(() {});
-                                    },
-                                  );
-                                },
-                              );
-                            },
-                          );
-                        },
+                      return Container(
+                        height: 1000,
+                        child: ListView.builder(
+                          itemCount: snapshot.data?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return TaskItem(
+                              model: snapshot.data?[index],
+                              onDeleted: () {
+                                setState(() {});
+                              },
+                              onSelected: () {
+                                showModalBottomSheet(
+                                  backgroundColor: MyColors.c363636,
+                                  context: context,
+                                  builder: (context) {
+                                    return UpdateTaskWidget(
+                                      todo: snapshot.data![index],
+                                      onUpdatedTask: () {
+                                        setState(() {});
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
                       );
                     } else if (snapshot.hasError) {
                       return Center(
