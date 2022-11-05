@@ -113,7 +113,7 @@ class _UpdateTaskWidgetState extends State<UpdateTaskWidget> {
                   title: newTitle,
                   description: newDescription,
                   date: (taskDate ?? DateTime.parse(widget.todo.date)).toString(),
-                  priority: "priority",
+                  priority: widget.todo.priority,
                   categoryId: 0,
                   isCompleted: 0,
                 );

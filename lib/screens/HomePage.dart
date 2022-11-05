@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:uptodo_app/models/uptodo_models.dart';
 import 'package:uptodo_app/utils/images.dart';
 import 'package:uptodo_app/utils/styles.dart';
@@ -22,6 +23,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 80,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+
+          },
+          icon: SvgPicture.asset(MyImages.iconMenu),
+        ),
+        backgroundColor: Colors.black,
+        title: Text("HomePage", style: MyStyles.latobolditalic700.copyWith(color: MyColors.cFFFFFF, fontSize: 20),),
+        actions: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: const CircleAvatar(
+              radius: 24,
+              backgroundImage: AssetImage(
+                MyImages.imageMyIcon
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+        ],
+      ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: SizedBox(

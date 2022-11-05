@@ -26,4 +26,10 @@ class MyImages {
   static const iconMovie = "assets/icons/movie.svg";
   static const iconHome = "assets/icons/home.svg";
   static const iconCreateNew = "assets/icons/create_new.svg";
+  static const iconSettings = "assets/icons/settings.svg";
+  static const iconArrowLeft = "assets/icons/arrowleft.svg";
+
+
+  //jpg
+  static const imageMyIcon = "assets/images/myicon.jpg"; 
 }

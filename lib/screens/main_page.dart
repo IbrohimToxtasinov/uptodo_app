@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uptodo_app/screens/HomePage.dart';
+import 'package:uptodo_app/screens/profile_page.dart';
 import 'package:uptodo_app/screens/screen1.dart';
 import 'package:uptodo_app/utils/colors.dart';
 import 'package:uptodo_app/utils/images.dart';
@@ -8,7 +9,7 @@ import 'package:uptodo_app/utils/styles.dart';
 import 'package:uptodo_app/widgets/add_taskwidget.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({Key? key}) : super(key: key);
+  const MainPage({Key? key}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -19,41 +20,17 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _pages = [
-      HomePage(),
-      Screen1(),
+    final List<Widget>  pages =  [
+      const HomePage(),
+      const Screen1(),
+      const HomePage(),
       Container(),
-      Container(),
-      Container(),
+      const ProfiePage(),
     ];
 
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: pages[_selectedIndex],
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        toolbarHeight: 80,
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-
-          },
-          icon: SvgPicture.asset(MyImages.iconMenu),
-        ),
-        backgroundColor: Colors.black,
-        title: Text("HomePage"),
-        actions: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: const CircleAvatar(
-              radius: 24,
-              backgroundImage: NetworkImage(
-                "https://i.pravatar.cc/300",
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-        ],
-      ),
       bottomNavigationBar: SizedBox(
         height: 80,
         child: BottomNavigationBar(
