@@ -28,6 +28,9 @@ class MyImages {
   static const iconCreateNew = "assets/icons/create_new.svg";
   static const iconSettings = "assets/icons/settings.svg";
   static const iconArrowLeft = "assets/icons/arrowleft.svg";
+  static const iconClear = "assets/icons/clear.svg";
+  static const iconRepeat = "assets/icons/repeat.svg";
+  static const iconEdit = "assets/icons/edit.svg";
 
 
   //jpg

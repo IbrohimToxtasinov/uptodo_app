@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:uptodo_app/screens/HomePage.dart';
 import 'package:uptodo_app/screens/profile_page.dart';
 import 'package:uptodo_app/screens/screen1.dart';
+import 'package:uptodo_app/screens/task_page.dart';
 import 'package:uptodo_app/utils/colors.dart';
-import 'package:uptodo_app/utils/images.dart';
 import 'package:uptodo_app/utils/styles.dart';
 import 'package:uptodo_app/widgets/add_taskwidget.dart';
 
@@ -24,7 +24,7 @@ class _MainPageState extends State<MainPage> {
       const HomePage(),
       const Screen1(),
       const HomePage(),
-      Container(),
+      const TaskPage(),
       const ProfiePage(),
     ];
 
