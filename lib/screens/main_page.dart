@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uptodo_app/screens/HomePage.dart';
@@ -24,7 +25,7 @@ class _MainPageState extends State<MainPage> {
       const HomePage(),
       const Screen1(),
       const HomePage(),
-      const TaskPage(),
+      Container(),
       const ProfiePage(),
     ];
 
@@ -62,13 +63,13 @@ class _MainPageState extends State<MainPage> {
           backgroundColor: MyColors.c363636,
           type: BottomNavigationBarType.fixed,
           items: [
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.home_filled),
-              label: 'Index',
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.home_filled),
+              label: 'Index'.tr(),
             ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month),
-              label: 'Calendar',
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.calendar_month),
+              label: 'Calendar'.tr(),
             ),
             BottomNavigationBarItem(
               icon: Center(
@@ -86,13 +87,13 @@ class _MainPageState extends State<MainPage> {
               ),
               label: "",
             ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.watch_later_outlined),
-              label: 'Focus',
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.watch_later_outlined),
+              label: 'Focus'.tr(),
             ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              label: 'Profile',
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.person_outline),
+              label: 'Profile'. tr(),
             ),
           ],
         ),

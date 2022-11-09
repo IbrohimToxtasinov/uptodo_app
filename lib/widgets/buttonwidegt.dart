@@ -1,10 +1,13 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:uptodo_app/database/local_database.dart';
+import 'package:uptodo_app/screens/main_page.dart';
 import 'package:uptodo_app/utils/colors.dart';
 import 'package:uptodo_app/utils/images.dart';
 import 'package:uptodo_app/utils/styles.dart';
-import 'package:uptodo_app/widgets/my_back_arrowwidget.dart';
+import 'package:uptodo_app/widgets/update_taskwidget.dart';
 
 Widget buildbuttonWidget(BuildContext context, {text}) {
   return Container(
@@ -37,7 +40,17 @@ Widget buildsvgbuttonWidget({iconName}) {
   );
 }
 
-Widget buildtaskWidget(BuildContext context) {
+Widget buildtaskWidget(BuildContext context,
+    {required VoidCallback onDeleted,
+    title,
+    name,
+    category,
+    priority,
+    iconName,
+    description,
+    colorName,
+    isCompleted,
+    id}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,19 +59,21 @@ Widget buildtaskWidget(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: 16,
-            height: 16,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(width: 1.5, color: MyColors.cFFFFFF),
-              color: MyColors.c363636,
-            ),
+                color: isCompleted == 1 ? Colors.green : Colors.transparent,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.white,
+                  width: 2,
+                )),
+            height: 20,
+            width: 20,
           ),
           const SizedBox(
             width: 21,
           ),
           Text(
-            "Do Math Homework",
+            title,
             style: MyStyles.latoregular400.copyWith(
                 fontWeight: FontWeight.w400,
                 fontSize: 20,
@@ -72,72 +87,84 @@ Widget buildtaskWidget(BuildContext context) {
       Row(
         children: [
           const SizedBox(width: 37),
-          Text("Do chapter 2 to 5 for next week",
+          Text(description,
               style: MyStyles.latoregular400.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: MyColors.cAFAFAF))
         ],
       ),
-      const SizedBox(height: 38),
-      taskswidget(
-          context,
-          name: "Today At 16:45",
-          taskname: "Task Time :",
-          taskicon: MyImages.iconTime),
+      const SizedBox(height: 40),
+      taskswidget(context,
+          name: name, taskname: "Task Time :", taskicon: MyImages.iconTime),
       const SizedBox(height: 34),
-      taskTimeWidget(
-          context,
-          name: "University",
+      taskCategoryWidget(context,
+          iconName: iconName,
+          name: category,
           taskname: "Task Category :",
-          taskicon: MyImages.iconTag),
+          taskicon: MyImages.iconTag,
+          colorName: colorName),
       const SizedBox(height: 34),
-      taskswidget(
-          context,
-          name: "Default",
+      taskPrioritywidget(context,
+          name: priority,
           taskname: "Task Priority :",
           taskicon: MyImages.iconFlag),
       const SizedBox(height: 34),
-      taskswidget(
-          context,
+      taskswidget(context,
           name: "Add Sub - Task",
           taskname: "Sub - Task :",
-          taskicon: MyImages.iconFlag),
+          taskicon: MyImages.iconSub),
       const SizedBox(height: 34),
-      Text(
-        "Delete task",
-        style: MyStyles.latoregular400.copyWith(
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-            color: Colors.red),
+      InkWell(
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Delete"),
+                  content: Text(
+                    "Are you sure to delete task $title",
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("NO"),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        var res = await LocalDatabase.deleteTaskById(id);
+                        if (res != 0) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const MainPage()));
+                          onDeleted();
+                        }
+                      },
+                      child: const Text("YES"),
+                    ),
+                  ],
+                );
+              });
+        },
+        child: Text(
+          "Delete task",
+          style: MyStyles.latoregular400.copyWith(
+              fontWeight: FontWeight.w400, fontSize: 16, color: Colors.red),
+        ),
       ),
-      const SizedBox(height: 120),
-      editTaskWidget(context, height: 48.0, color: MyColors.c8687E7, textcolor: MyColors.cFFFFFF, textname: "Edit Task"),
     ],
   );
 }
-Widget editTaskWidget(BuildContext context, {height, color, textcolor, textname}) {
-  return Container(
-    height: height,
-    width: double.infinity,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(4),
-      color: color,
-    ),
-    child: Center(child: Text(textname, style: MyStyles.latoregular400.copyWith(fontSize: 16, fontWeight: FontWeight.w400, color: textcolor))),
-  );
-}
-
-
 
 Widget taskswidget(
-  BuildContext context,
-  {
-    taskname,
-    taskicon,
-    name,
-  }
-) {
+  BuildContext context, {
+  taskname,
+  taskicon,
+  name,
+}) {
   return Row(
     children: [
       SvgPicture.asset(taskicon),
@@ -167,14 +194,13 @@ Widget taskswidget(
     ],
   );
 }
-Widget taskTimeWidget(
-  BuildContext context,
-  {
-    taskname,
-    taskicon,
-    name,
-  }
-) {
+
+Widget taskPrioritywidget(
+  BuildContext context, {
+  taskname,
+  taskicon,
+  name,
+}) {
   return Row(
     children: [
       SvgPicture.asset(taskicon),
@@ -189,13 +215,57 @@ Widget taskTimeWidget(
         height: 37,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          color: MyColors.cFFFFFF.withOpacity(0.21),
-        ),
+            borderRadius: BorderRadius.circular(6),
+            color: MyColors.cFFFFFF.withOpacity(0.21),
+            border: Border.all(width: 2, color: MyColors.c8687E7)),
         child: Center(
             child: Row(
           children: [
-            SvgPicture.asset(MyImages.iconUniversity),
+            SvgPicture.asset(MyImages.iconFlag),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              name,
+              style: MyStyles.latoregular400.copyWith(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                  color: MyColors.cFFFFFF.withOpacity(0.87)),
+            ),
+          ],
+        )),
+      ),
+    ],
+  );
+}
+
+Widget taskCategoryWidget(
+  BuildContext context, {
+  taskname,
+  taskicon,
+  name,
+  iconName,
+  colorName,
+}) {
+  return Row(
+    children: [
+      SvgPicture.asset(taskicon),
+      const SizedBox(width: 8),
+      Text(taskname,
+          style: MyStyles.latoregular400.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: MyColors.cFFFFFF.withOpacity(0.87))),
+      const Spacer(),
+      Container(
+        height: 37,
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6), color: Color(colorName)),
+        child: Center(
+            child: Row(
+          children: [
+            SvgPicture.asset(iconName),
             const SizedBox(width: 10),
             Text(
               name,
@@ -209,4 +279,38 @@ Widget taskTimeWidget(
       ),
     ],
   );
+}
+
+Widget editTaskWidget(BuildContext context,
+    {height,
+    color,
+    textcolor,
+    textname,
+    todo,
+    required VoidCallback onUpdatedTask}) {
+  return InkWell(onTap: () {
+    showModalBottomSheet(
+      backgroundColor: MyColors.c363636,
+      context: context,
+      builder: (context) {
+        return UpdateTaskWidget(
+          todo: todo,
+          onUpdatedTask: onUpdatedTask,
+        );
+      },
+    );
+    child:
+    Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        color: color,
+      ),
+      child: Center(
+          child: Text(textname,
+              style: MyStyles.latoregular400.copyWith(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: textcolor))),
+    );
+  });
 }

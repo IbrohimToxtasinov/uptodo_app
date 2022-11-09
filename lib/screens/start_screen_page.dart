@@ -22,9 +22,9 @@ class StartScreenPage extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 370,),
-                  button(context, height: 48.0, text: "LOGIN", color: MyColors.c8875FF, pagename: const LoginPage(), textcolor: MyColors.cFFFFFF),
+                  //button(context, height: 48.0, text: "LOGIN", color: MyColors.c8875FF, pagename: const LoginPage(), textcolor: MyColors.cFFFFFF),
                   const SizedBox(height: 28,),
-                  button(context, height: 48.0, text: "CREATE ACCOUNT", color: MyColors.c000000, pagename: const RegisterPage(), textcolor: MyColors.cFFFFFF), 
+                  //button(context, height: 48.0, text: "CREATE ACCOUNT", color: MyColors.c000000, pagename: const RegisterPage(), textcolor: MyColors.cFFFFFF), 
                 ],
               ),
             ), 

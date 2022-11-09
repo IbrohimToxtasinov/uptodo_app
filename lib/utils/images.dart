@@ -31,6 +31,7 @@ class MyImages {
   static const iconClear = "assets/icons/clear.svg";
   static const iconRepeat = "assets/icons/repeat.svg";
   static const iconEdit = "assets/icons/edit.svg";
+  static const iconSub = "assets/icons/sub.svg";
 
 
   //jpg

@@ -65,21 +65,21 @@ class LocalDatabase {
     return updatedTask.copyWith(id: id);
   }
 
-  static Future<List<TodoModel>> getList() async {
-    var database = await getInstance.getDb();
-    var listOfTodos = await database.query(tableName, columns: [
-      TodoFields.id,
-      TodoFields.title,
-      TodoFields.description,
-      TodoFields.date,
-      TodoFields.priority,
-      TodoFields.categoryId,
-    ]);
+  // static Future<List<TodoModel>> getList() async {
+  //   var database = await getInstance.getDb();
+  //   var listOfTodos = await database.query(tableName, columns: [
+  //     TodoFields.id,
+  //     TodoFields.title,
+  //     TodoFields.description,
+  //     TodoFields.date,
+  //     TodoFields.priority,
+  //     TodoFields.categoryId,
+  //   ]);
 
-    var list = listOfTodos.map((e) => TodoModel.fromJson(e)).toList();
+  //   var list = listOfTodos.map((e) => TodoModel.fromJson(e)).toList();
 
-    return list;
-  }
+  //   return list;
+  // }
 
   static Future<List<TodoModel>> getTaskByTitle({String title = ''}) async {
     var database = await getInstance.getDb();
@@ -114,5 +114,36 @@ class LocalDatabase {
       where: 'id = ?',
       whereArgs: [id],
     );
+  }
+
+  static Future<List<TodoModel>> getTodosIsCompleted(int isCompleted,
+      {String title = ''}) async {
+    var database = await getInstance.getDb();
+
+    if (title.isNotEmpty) {
+      var listOfTodos = await database.query(
+        tableName,
+        where: 'title LIKE ? AND ${TodoFields.isCompleted} = ?',
+        whereArgs: ['%$title%', '$isCompleted'],
+      );
+      var list = listOfTodos.map((e) => TodoModel.fromJson(e)).toList();
+      return list;
+    } else {
+      var listOfTodos = await database.query(tableName,
+          columns: [
+            TodoFields.id,
+            TodoFields.title,
+            TodoFields.description,
+            TodoFields.date,
+            TodoFields.priority,
+            TodoFields.categoryId,
+            TodoFields.isCompleted
+          ],
+          where: '${TodoFields.isCompleted} = ?',
+          whereArgs: ['$isCompleted']);
+
+      var list = listOfTodos.map((e) => TodoModel.fromJson(e)).toList();
+      return list;
+    }
   }
 }

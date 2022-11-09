@@ -38,7 +38,7 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 25),
               buildtextFormFieldconpassWidget(context, title: "Confirm Password", hintname: "•  •  •  •  •  •  •  •  •  •  •  •"),
               const SizedBox(height: 41,),
-              button(context, color: hasUsername == true && haspassword == true  && hasconpassword == true ? MyColors.c8875FF : MyColors.c808687E7D, height: 48.0, pagename: hasUsername == true && haspassword == true && hasconpassword == true ? MainPage() : const RegisterPage(), text: "Register", textcolor: hasUsername == true && haspassword == true ? MyColors.cFFFFFF : MyColors.cFFFFFF.withOpacity(0.5)),
+              //button(context, color: hasUsername == true && haspassword == true  && hasconpassword == true ? MyColors.c8875FF : MyColors.c808687E7D, height: 48.0, pagename: hasUsername == true && haspassword == true && hasconpassword == true ? MainPage() : const RegisterPage(), text: "Register", textcolor: hasUsername == true && haspassword == true ? MyColors.cFFFFFF : MyColors.cFFFFFF.withOpacity(0.5)),
               const SizedBox(height: 31,),
               buildloginandregisterbottom(context, name: "Register", name2: "Login",height: 24.0, pagname: const LoginPage()),
             ],

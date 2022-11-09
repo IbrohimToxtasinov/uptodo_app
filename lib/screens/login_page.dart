@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uptodo_app/database/shared_praferences.dart';
 import 'package:uptodo_app/screens/HomePage.dart';
 import 'package:uptodo_app/screens/main_page.dart';
 import 'package:uptodo_app/screens/register_page.dart';
 import 'package:uptodo_app/utils/colors.dart';
 import 'package:uptodo_app/utils/styles.dart';
 import 'package:uptodo_app/widgets/loginandregisterbottomWidget.dart';
-import 'package:uptodo_app/widgets/my_back_arrowWidget.dart';
 import 'package:uptodo_app/widgets/my_textwidget.dart';
 // import 'package:uptodo_app/widgets/my_textformfieldWidget.dart';
+import 'package:uptodo_app/widgets/my_back_arrowWidget.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,6 +18,8 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
+  final username = TextEditingController();
+  final password = TextEditingController();
   bool hasUsername = false;
   bool haspassword = false;
 class _LoginPageState extends State<LoginPage> {
@@ -29,11 +34,11 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               backarrowWidget(context, bottom: 41.0),
               textboldWidget(context, title: "Login", botom: 53.0),
-              buildtextFormFieldWidget(context, title: "Username", hintname: "Enter your Username"),
+              buildtextFormFieldWidget(context, title: "Username", hintname: "Enter your Username", uesrname: username),
               const SizedBox(height: 25),
-              buildtextFormFieldpassWidget(context, title: "Password", hintname: "•  •  •  •  •  •  •  •  •  •  •  •"),
+              buildtextFormFieldpassWidget(context, title: "Password", hintname: "•  •  •  •  •  •  •  •  •  •  •  •", password: password),
               const SizedBox(height: 69,),
-              button(context, color: hasUsername == true && haspassword == true ? MyColors.c8875FF : MyColors.c808687E7D, height: 48.0, pagename: hasUsername == true && haspassword == true  ? MainPage() : const LoginPage(), text: "Login", textcolor: hasUsername == true && haspassword == true ? MyColors.cFFFFFF : MyColors.cFFFFFF.withOpacity(0.5)),
+              button(context, color: hasUsername == true && haspassword == true ? MyColors.c8875FF : MyColors.c808687E7D, height: 48.0, pagename: hasUsername == true && haspassword == true  ? const MainPage() : const LoginPage(), text: "Login", textcolor: hasUsername == true && haspassword == true ? MyColors.cFFFFFF : MyColors.cFFFFFF.withOpacity(0.5), parol: hasUsername == true && haspassword == true ? true : false),                          
               const SizedBox(height: 31,),
               buildloginandregisterbottom(context, name: "Login", name2: "Register", height: 29.0, pagname: const RegisterPage()),
             ],
@@ -42,7 +47,36 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  Widget buildtextFormFieldWidget(BuildContext context, {title, hintname}) {
+  Widget button(BuildContext context, {height, text, color, pagename, textcolor, parol}) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 24, right: 24),
+    child: InkWell(
+      onTap: () async {
+        if(parol == true)  {
+            saveLogin(context);
+            print(username.text);
+            await StorageRepository.saveString("userName", username.text);
+            await StorageRepository.saveString("password", password.text);
+        }
+      },
+      child: Container(
+        width: double.infinity,
+        height: height,
+        decoration: BoxDecoration(
+          color: color,
+          border: Border.all(width: 2, color: MyColors.c8E7CFFF),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: Center(child: Text(text, style: MyStyles.latoregular400.copyWith(fontSize: 16, fontWeight: FontWeight.w400, color: textcolor),)),
+      ),
+    ),
+  );
+}
+
+
+
+
+  Widget buildtextFormFieldWidget(BuildContext context, {title, hintname, uesrname}) {
   return Padding(
     padding: const EdgeInsets.only(left: 24, right: 24),
     child: Column(
@@ -58,6 +92,7 @@ class _LoginPageState extends State<LoginPage> {
         SizedBox(
           width: double.infinity,
           child: TextFormField(
+            controller: username,
             style: const TextStyle(color: MyColors.cFFFFFF),
             keyboardType: TextInputType.text,
             obscureText: false,
@@ -97,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
     ),
   );
 }
-Widget buildtextFormFieldpassWidget(BuildContext context, {title, hintname}) {
+Widget buildtextFormFieldpassWidget(BuildContext context, {title, hintname, password}) {
   return Padding(
     padding: const EdgeInsets.only(left: 24, right: 24),
     child: Column(
@@ -113,6 +148,7 @@ Widget buildtextFormFieldpassWidget(BuildContext context, {title, hintname}) {
         SizedBox(
           width: double.infinity,
           child: TextFormField(
+            controller: password,
             style: const TextStyle(color: MyColors.cFFFFFF),
             keyboardType: TextInputType.text,
             obscureText: false,
@@ -156,4 +192,11 @@ Widget buildtextFormFieldpassWidget(BuildContext context, {title, hintname}) {
     ),
   );
 }
+void saveLogin(context) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setBool("LoginedIn", true);
+
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const MainPage()));
+  }
 }

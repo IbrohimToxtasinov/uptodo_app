@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:uptodo_app/models/uptodo_models.dart';
@@ -57,6 +59,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                 onSaved: (val) {
                   newTitle = val ?? "";
                 },
+                maxLength: 20, 
                 style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -76,6 +79,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                 onSaved: (val) {
                   newDescription = val ?? "";
                 },
+                maxLength: 20,
                 style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -149,7 +153,6 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                       ),
                       InkWell(
                         onTap: () {
-                          //flagwidget(context, isSelected: isSelected, newprority: newprority);
                           showDialog(
                               context: context,
                               builder: (((context) => StatefulBuilder(
@@ -375,15 +378,6 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                     child: SvgPicture.asset(MyImages.iconSend),
                   ),
                 ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30, left: 10),
-                child: Text(
-                  taskDay.toString() == "null"
-                      ? "Date"
-                      : TimeUtils.formatToMyTime(taskDay!),
-                  style: TextStyle(color: Colors.white),
-                ),
               ),
             ],
           ),

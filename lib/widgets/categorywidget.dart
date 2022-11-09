@@ -21,49 +21,64 @@ class _CategoryPickerState extends State<CategoryPicker> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.625,
-      width: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.65,
+      width: MediaQuery.of(context).size.width * 0.999,
       child: Column(
         children: [
           Text("Choose Category", style: MyStyles.latobold700.copyWith(fontSize: 16, color: MyColors.cFFFFFF.withOpacity(0.87), fontWeight: FontWeight.w700)),
           const SizedBox(height: 5),
           const Divider(thickness: 1, color: MyColors.c979797),
           const SizedBox(height: 10),
-          Container(
-            height: 400,
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.50,
             child: GridView.builder(
                 itemCount: TodoCategory.categories.length,
                 scrollDirection: Axis.vertical,
+                shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 4,
                   crossAxisCount: 3,
+                  childAspectRatio: 1.5,
+                  mainAxisExtent: 100
                 ),
                 itemBuilder: (context, index) {
                   return categoryItem(TodoCategory.categories[index], index);
                 }
               ),
           ),
+          const SizedBox(height: 20),
+          const Spacer(),
           Padding(
-            padding: const EdgeInsets.only(left: 8, top: 33, right: 8, bottom: 8),
+            padding: const EdgeInsets.only(left: 8, right: 8, bottom: 9),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InkWell(
-                  onTap: (() {
-                    Navigator.pop(context);
-                  }),
-                child: Container(
+                // InkWell(
+                //   onTap: (() {
+                //     Navigator.pop(context);
+                //   }),
+                // child: Container(
+                //   height: 48,
+                //   width: 120,
+                //   decoration: BoxDecoration(
+                //     color: MyColors.c363636,
+                //     borderRadius: BorderRadius.circular(4),
+                //   ),
+                //   child: Center(
+                //     child: Text("Cancel", style: MyStyles.latoregular400.copyWith(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.redAccent),)))           
+                // ),
+                Container(
                   height: 48,
                   width: 120,
-                  decoration: BoxDecoration(
-                    color: MyColors.c363636,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Center(
-                    child: Text("Cancel", style: MyStyles.latoregular400.copyWith(fontSize: 16, fontWeight: FontWeight.w400, color: MyColors.cFFFFFF),)))           
-                ),
+                  child: TextButton(
+                    onPressed: () {
+                      
+                    },
+                    child: Center(
+                      child: Text("Cancel", style: MyStyles.latoregular400.copyWith(fontSize: 16, fontWeight: FontWeight.w400, color: MyColors.cFFFFFF),))),
+                ) ,
                 InkWell(
                   onTap: (() {
                     widget.onSelected(count);

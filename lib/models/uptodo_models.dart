@@ -65,6 +65,6 @@ class TodoModel {
         date: date ?? this.date,
         priority: priority ?? this.priority,
         isCompleted: isCompleted ?? this.isCompleted,
-        categoryId: categoryId ?? this.categoryId
+        categoryId: categoryId ?? this.categoryId,
       );
 }

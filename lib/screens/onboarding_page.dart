@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uptodo_app/screens/login_page.dart';
 import 'package:uptodo_app/screens/start_screen_page.dart';
 import 'package:uptodo_app/utils/colors.dart';
 import 'package:uptodo_app/utils/images.dart';
@@ -104,7 +105,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           onTap: () {
                             if(_currentPage == (pages.length - 1)){
                               Navigator.push(
-                                context, MaterialPageRoute(builder: (context) => const StartScreenPage()));
+                                context, MaterialPageRoute(builder: (context) => const LoginPage()));
                             }
                             else {
                               _controller.nextPage(

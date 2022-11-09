@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uptodo_app/database/shared_praferences.dart';
 import 'package:uptodo_app/utils/colors.dart';
 import 'package:uptodo_app/utils/images.dart';
 import 'package:uptodo_app/utils/styles.dart';
 import 'package:uptodo_app/widgets/buttonwidegt.dart';
+import 'package:uptodo_app/widgets/select_languages.dart';
 
-class ProfiePage extends StatelessWidget {
+class ProfiePage extends StatefulWidget {
   const ProfiePage({super.key});
 
+  @override
+  State<ProfiePage> createState() => _ProfiePageState();
+}
+
+String name = StorageRepository.getString("userName");
+
+class _ProfiePageState extends State<ProfiePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +49,7 @@ class ProfiePage extends StatelessWidget {
             ),
             Center(
               child: Text(
-                "Ibrohim Toxtasinov",
+                name,
                 style: MyStyles.latoregular400.copyWith(
                     fontSize: 20, color: MyColors.cFFFFFF.withOpacity(0.87)),
               ),
@@ -57,6 +65,7 @@ class ProfiePage extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 20),
             Text(
               "Settings",
               style: MyStyles.latoregular400.copyWith(
@@ -72,7 +81,9 @@ class ProfiePage extends StatelessWidget {
               title: Row(
                 children: [
                   SvgPicture.asset(MyImages.iconSettings),
-                  const SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Text("App Settings",
                       style: MyStyles.latoregular400.copyWith(
                           color: MyColors.cFFFFFF.withOpacity(0.87),
@@ -80,6 +91,49 @@ class ProfiePage extends StatelessWidget {
                           fontWeight: FontWeight.w400))
                 ],
               ),
+              children: [
+                TextButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text("Change name"),
+                          content: TextFormField(
+                            initialValue: name,
+                            onChanged: (val) {
+                              setState(() {
+                                name = val;
+                              });
+                            },
+                          ),
+                          actions: [
+                            TextButton(
+                                onPressed: () async {
+                                  await StorageRepository.saveString(
+                                      "userName", name);
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Save")),
+                          ],
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Edit Username",
+                    )),
+                TextButton(
+                    onPressed: () {
+                      
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => const SelectLang(),
+                        );
+                      
+                    },
+                    child: const Text(
+                      "Edit Languages",
+                    ))
+              ],
             ),
           ],
         ),

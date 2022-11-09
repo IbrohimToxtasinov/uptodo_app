@@ -14,7 +14,7 @@ class _Screen1State extends State<Screen1> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: LocalDatabase.getList(),
+        // future: LocalDatabase.getTodosIsCompleted(),
         builder:
             (BuildContext context, AsyncSnapshot<List<TodoModel>> snapshot) {
           if (snapshot.hasData) {
