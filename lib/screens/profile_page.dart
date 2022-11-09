@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,7 +27,7 @@ class _ProfiePageState extends State<ProfiePage> {
         centerTitle: true,
         backgroundColor: MyColors.c000000,
         title: Text(
-          "Profile",
+          "Profile".tr(),
           style: MyStyles.latobolditalic700
               .copyWith(color: MyColors.cFFFFFF, fontSize: 20),
         ),
@@ -60,14 +61,14 @@ class _ProfiePageState extends State<ProfiePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  buildbuttonWidget(context, text: "10 Task left"),
-                  buildbuttonWidget(context, text: "5 Task done"),
+                  buildbuttonWidget(context, text: "10 Task left".tr()),
+                  buildbuttonWidget(context, text: "5 Task done".tr()),
                 ],
               ),
             ),
             const SizedBox(height: 20),
             Text(
-              "Settings",
+              "Settings".tr(),
               style: MyStyles.latoregular400.copyWith(
                   fontSize: 14,
                   color: MyColors.cAFAFAF,
@@ -84,7 +85,7 @@ class _ProfiePageState extends State<ProfiePage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  Text("App Settings",
+                  Text("App Settings".tr(),
                       style: MyStyles.latoregular400.copyWith(
                           color: MyColors.cFFFFFF.withOpacity(0.87),
                           fontSize: 16,
@@ -97,7 +98,7 @@ class _ProfiePageState extends State<ProfiePage> {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: Text("Change name"),
+                          title: Text("Change name".tr()),
                           content: TextFormField(
                             initialValue: name,
                             onChanged: (val) {
@@ -113,13 +114,13 @@ class _ProfiePageState extends State<ProfiePage> {
                                       "userName", name);
                                   Navigator.pop(context);
                                 },
-                                child: const Text("Save")),
+                                child: Text("Save".tr())),
                           ],
                         ),
                       );
                     },
-                    child: const Text(
-                      "Edit Username",
+                    child: Text(
+                      "Edit Username".tr(),
                     )),
                 TextButton(
                     onPressed: () {
@@ -130,8 +131,8 @@ class _ProfiePageState extends State<ProfiePage> {
                         );
                       
                     },
-                    child: const Text(
-                      "Edit Languages",
+                    child: Text(
+                      "Edit Languages".tr(),
                     ))
               ],
             ),

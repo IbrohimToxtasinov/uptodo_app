@@ -2,6 +2,15 @@
     "Uncompleted": "Bajarilmagan",
     "Completed": "Yakunlangan",
     "HomePage": "Asosiy sahifa",
-    "Profile": "Profil sahifasi",
-    "Change language": "Tilni o'zgartirish"
+    "Profile": "Profil",    
+    "Change language": "Change language",
+    "Edit Languages" : "Tillarni tahrirlash",
+    "Edit Username" : "Foydalanuvchi nomini tahrirlash",
+    "Change name" : "Ismni o'zgartirish",
+    "Save" : "Saqlash",
+    "App Settings" : "Ilova sozlamalri",
+    "Settings" : "Sozlamalar",
+    "10 Task left" : "10 ta vazifa qoldi",
+    "5 Task done" : "5 ta vazifa bajarildi"
+    
   }

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:uptodo_app/database/shared_praferences.dart';
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: Colors.black,
         title: Text(
-          "Home Page",
+          "Home Page".tr(),
           style: MyStyles.latobolditalic700
               .copyWith(color: MyColors.cFFFFFF, fontSize: 20),
         ),
@@ -61,24 +62,24 @@ class _HomePageState extends State<HomePage> {
             style: MyStyles.latoregular400.copyWith(color: MyColors.cFFFFFF),
             keyboardType: TextInputType.text,
             obscureText: false,
-            decoration: const InputDecoration(
-              hintText: "Search for your task...",
-              prefixIcon: Icon(
+            decoration: InputDecoration(
+              hintText: "Search for your task...".tr(),
+              prefixIcon: const Icon(
                 Icons.search,
                 color: Color.fromARGB(255, 100, 99, 99),
               ),
-              hintStyle: TextStyle(
+              hintStyle: const TextStyle(
                   color: Color.fromARGB(255, 100, 99, 99),
                   fontWeight: FontWeight.w400,
                   fontSize: 16),
               filled: true,
               fillColor: Colors.black,
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                   borderSide: BorderSide(
                     color: Color.fromARGB(255, 100, 99, 99),
                   )),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                   borderSide: BorderSide(
                     color: Color.fromARGB(255, 100, 99, 99),
@@ -92,9 +93,9 @@ class _HomePageState extends State<HomePage> {
               children: [
                 ExpansionTile(
                   iconColor: Colors.white,
-                  title: const Text(
-                    'Uncompleted',
-                    style: TextStyle(color: Colors.white),
+                  title: Text(
+                    'Uncompleted'.tr(),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   children: [
                     FutureBuilder(
@@ -106,8 +107,8 @@ class _HomePageState extends State<HomePage> {
                             return Center(
                                 child: pustoWidget(
                               context,
-                              title: "What do you want to do today?",
-                              description: "Tap + to add your tasks",
+                              title: "What do you want to do today?".tr(),
+                              description: "Tap + to add your tasks".tr(),
                               image: MyImages.iconHomePage,
                             ));
                           }
@@ -153,9 +154,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 ExpansionTile(
                   iconColor: Colors.white,
-                  title: const Text(
-                    'Completed',
-                    style: TextStyle(color: Colors.white),
+                  title: Text(
+                    'Completed'.tr(),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   children: [
                     FutureBuilder(
@@ -167,8 +168,8 @@ class _HomePageState extends State<HomePage> {
                             return Center(
                                 child: pustoWidget(
                               context,
-                              title: "What do you want to do today?",
-                              description: "Tap + to add your tasks",
+                              title: "What do you want to do today?".tr(),
+                              description: "Tap + to add your tasks".tr(),
                               image: MyImages.iconHomePage,
                             ));
                           }
