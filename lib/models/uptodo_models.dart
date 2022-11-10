@@ -46,7 +46,7 @@ class TodoModel {
       'date': date,
       'priority': priority,
       'isCompleted': isCompleted,
-      'categoryId' : categoryId,
+      'categoryId': categoryId,
     };
   }
 
@@ -65,6 +65,6 @@ class TodoModel {
         date: date ?? this.date,
         priority: priority ?? this.priority,
         isCompleted: isCompleted ?? this.isCompleted,
-        categoryId: categoryId ?? this.categoryId,
+        categoryId: categoryId,
       );
 }
