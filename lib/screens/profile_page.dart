@@ -10,7 +10,8 @@ import 'package:uptodo_app/widgets/buttonwidegt.dart';
 import 'package:uptodo_app/widgets/select_languages.dart';
 
 class ProfiePage extends StatefulWidget {
-  const ProfiePage({super.key});
+  VoidCallback onTap;
+  ProfiePage({super.key, required this.onTap});
 
   @override
   State<ProfiePage> createState() => _ProfiePageState();
@@ -127,8 +128,7 @@ class _ProfiePageState extends State<ProfiePage> {
                     onPressed: () {
                       showDialog(
                           context: context,
-                          builder: (((context) => StatefulBuilder(
-                                    builder: (context, state) {
+                          builder: (BuildContext context) {
                             return AlertDialog(
                               backgroundColor: MyColors.c363636,
                               content: SizedBox(
@@ -136,24 +136,19 @@ class _ProfiePageState extends State<ProfiePage> {
                                 width: 500,
                                 child: SelectLang(
                                   onTap: () {
-                                    state(() {
-                                      
-                                    });
+                                    widget.onTap();
                                   },
                                 ),
                               ),
                               actions: [
                                 TextButton(
                                     onPressed: () {
-                                      setState(() {
-                                        Navigator.pop(context);
-                                        
-                                      });
+                                      Navigator.pop(context);
                                     },
                                     child: const Text("Ok"))
                               ],
                             );
-                          }))));
+                          });
                     },
                     child: Text(
                       "Edit Languages".tr(),

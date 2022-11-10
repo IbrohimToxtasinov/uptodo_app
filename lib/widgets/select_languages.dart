@@ -33,7 +33,7 @@ class _SelectLangState extends State<SelectLang> {
             setState(() async {
               selectedLang = value as int;
               context.setLocale(const Locale('uz', 'UZ'));
-              widget.onTap;
+              widget.onTap();
               await StorageRepository.saveInt("selectedLang", selectedLang);
             });
           },
@@ -52,7 +52,7 @@ class _SelectLangState extends State<SelectLang> {
             setState(() async {
               selectedLang = value as int;
               context.setLocale(const Locale('en', 'US'));
-              widget.onTap;
+              widget.onTap();
               await StorageRepository.saveInt("selectedLang", selectedLang);
             });
           },
@@ -69,7 +69,7 @@ class _SelectLangState extends State<SelectLang> {
           groupValue: selectedLang,
           onChanged: (value) {
             setState(() async {
-              widget.onTap;
+              widget.onTap();
               selectedLang = value as int;
               context.setLocale(const Locale('ru', 'RU'));
               await StorageRepository.saveInt("selectedLang", selectedLang);

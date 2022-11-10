@@ -21,6 +21,17 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+    const HomePage(),
+    const Screen1(),
+    const HomePage(),
+    Container(),
+     ProfiePage(onTap: () {
+       setState(() {
+         
+       });
+     },),
+  ];
     return Scaffold(
       body: pages[_selectedIndex],
       backgroundColor: Colors.black,
@@ -97,11 +108,5 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  final List<Widget> pages = [
-    const HomePage(),
-    const Screen1(),
-    const HomePage(),
-    Container(),
-    const ProfiePage(),
-  ];
+  
 }
