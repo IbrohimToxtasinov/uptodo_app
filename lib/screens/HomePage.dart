@@ -22,6 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String search = '';
+  bool initialExpanded = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,6 +93,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 ExpansionTile(
+                  initiallyExpanded: true,
                   iconColor: Colors.white,
                   title: Text(
                     'Uncompleted'.tr(),
@@ -104,13 +106,12 @@ class _HomePageState extends State<HomePage> {
                           AsyncSnapshot<List<TodoModel>> snapshot) {
                         if (snapshot.hasData) {
                           if (snapshot.data!.isEmpty) {
-                            return Center(
-                                child: pustoWidget(
+                            return pustoWidget(
                               context,
                               title: "What do you want to do today?".tr(),
                               description: "Tap + to add your tasks".tr(),
                               image: MyImages.iconHomePage,
-                            ));
+                            );
                           }
                           return ListView.builder(
                             shrinkWrap: true,
@@ -153,6 +154,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 ExpansionTile(
+                  initiallyExpanded: true,
                   iconColor: Colors.white,
                   title: Text(
                     'Completed'.tr(),

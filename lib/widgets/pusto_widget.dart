@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 Widget pustoWidget(BuildContext context,{image, title, description}) {
   double width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.only(top: 100),
+      padding: const EdgeInsets.only(top: 50, bottom: 50),
       child: Container(
         color: MyColors.c000000,
         child: Column(

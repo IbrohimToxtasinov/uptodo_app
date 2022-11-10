@@ -79,6 +79,7 @@ class _ProfiePageState extends State<ProfiePage> {
             ),
             ExpansionTile(
               iconColor: MyColors.cFFFFFF,
+              initiallyExpanded: false,
               title: Row(
                 children: [
                   SvgPicture.asset(MyImages.iconSettings),
@@ -124,12 +125,35 @@ class _ProfiePageState extends State<ProfiePage> {
                     )),
                 TextButton(
                     onPressed: () {
-                      
-                        showModalBottomSheet(
+                      showDialog(
                           context: context,
-                          builder: (context) => const SelectLang(),
-                        );
-                      
+                          builder: (((context) => StatefulBuilder(
+                                    builder: (context, state) {
+                            return AlertDialog(
+                              backgroundColor: MyColors.c363636,
+                              content: SizedBox(
+                                height: 168,
+                                width: 500,
+                                child: SelectLang(
+                                  onTap: () {
+                                    state(() {
+                                      
+                                    });
+                                  },
+                                ),
+                              ),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        Navigator.pop(context);
+                                        
+                                      });
+                                    },
+                                    child: const Text("Ok"))
+                              ],
+                            );
+                          }))));
                     },
                     child: Text(
                       "Edit Languages".tr(),

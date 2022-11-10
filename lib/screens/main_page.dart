@@ -21,14 +21,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget>  pages =  [
-      const HomePage(),
-      const Screen1(),
-      const HomePage(),
-      Container(),
-      const ProfiePage(),
-    ];
-
     return Scaffold(
       body: pages[_selectedIndex],
       backgroundColor: Colors.black,
@@ -38,21 +30,21 @@ class _MainPageState extends State<MainPage> {
           currentIndex: _selectedIndex,
           onTap: (index) {
             setState(() {
-              if(index == 2){
+              if (index == 2) {
                 showModalBottomSheet(
                   isScrollControlled: true,
                   backgroundColor: MyColors.c363636,
                   context: context,
                   builder: (context) {
-                  return AddTaskWidget(
-                    onNewTask: () {
-                      setState(() {
-                        _selectedIndex = 0;
-                      });
-                    },
-                  );
-                },
-              );
+                    return AddTaskWidget(
+                      onNewTask: () {
+                        setState(() {
+                          _selectedIndex = 0;
+                        });
+                      },
+                    );
+                  },
+                );
               }
               _selectedIndex = index;
             });
@@ -65,7 +57,7 @@ class _MainPageState extends State<MainPage> {
           items: [
             BottomNavigationBarItem(
               icon: const Icon(Icons.home_filled),
-              label: 'Index'.tr(),
+              label: 'Home'.tr(),
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.calendar_month),
@@ -76,12 +68,16 @@ class _MainPageState extends State<MainPage> {
                 child: Container(
                   width: 50,
                   height: 50,
-                  decoration: const  BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: MyColors.c8875FF,
                   ),
                   child: Center(
-                    child: Text("+", style: MyStyles.latobold700.copyWith(fontSize: 20, color: MyColors.c000000),),
+                    child: Text(
+                      "+",
+                      style: MyStyles.latobold700
+                          .copyWith(fontSize: 20, color: MyColors.c000000),
+                    ),
                   ),
                 ),
               ),
@@ -93,11 +89,19 @@ class _MainPageState extends State<MainPage> {
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.person_outline),
-              label: 'Profile'. tr(),
+              label: 'Profile'.tr(),
             ),
           ],
         ),
       ),
     );
   }
+
+  final List<Widget> pages = [
+    const HomePage(),
+    const Screen1(),
+    const HomePage(),
+    Container(),
+    const ProfiePage(),
+  ];
 }
