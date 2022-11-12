@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uptodo_app/screens/login_page.dart';
 import 'package:uptodo_app/screens/register_page.dart';
 import 'package:uptodo_app/utils/colors.dart';
+import 'package:uptodo_app/widgets/buttonwidegt.dart';
 import 'package:uptodo_app/widgets/my_back_arrowwidget.dart';
 import 'package:uptodo_app/widgets/my_textWidget.dart';
 
@@ -22,9 +23,9 @@ class StartScreenPage extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 370,),
-                  //button(context, height: 48.0, text: "LOGIN", color: MyColors.c8875FF, pagename: const LoginPage(), textcolor: MyColors.cFFFFFF),
+                  buttons(context, height: 48.0, text: "LOGIN", color: MyColors.c8875FF, pagename: const LoginPage(), textcolor: MyColors.cFFFFFF, parol: true),
                   const SizedBox(height: 28,),
-                  //button(context, height: 48.0, text: "CREATE ACCOUNT", color: MyColors.c000000, pagename: const RegisterPage(), textcolor: MyColors.cFFFFFF), 
+                  buttons(context, height: 48.0, text: "CREATE ACCOUNT", color: MyColors.c000000, pagename: const RegisterPage(), textcolor: MyColors.cFFFFFF, parol: true), 
                 ],
               ),
             ), 

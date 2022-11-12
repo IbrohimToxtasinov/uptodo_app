@@ -92,7 +92,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
               ),
-              label: "",
+              label: "Add".tr(),
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.watch_later_outlined),

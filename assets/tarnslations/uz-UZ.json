@@ -1,18 +1,23 @@
 {
     "Uncompleted": "Bajarilmagan",
     "Completed": "Yakunlangan",
-    "HomePage": "Asosiy sahifa",
+    "Home Page": "Asosiy sahifa",
     "Profile": "Profil",    
     "Change language": "Change language",
     "Edit Languages" : "Tillarni tahrirlash",
     "Edit Username" : "Foydalanuvchi nomini tahrirlash",
     "Change name" : "Ismni o'zgartirish",
     "Save" : "Saqlash",
-    "App Settings" : "Ilova sozlamalri",
+    "App Settings" : "Ilova sozlamalari",
     "Settings" : "Sozlamalar",
     "10 Task left" : "10 ta vazifa qoldi",
     "5 Task done" : "5 ta vazifa bajarildi",
     "Home" : "Uy",
     "Focus" : "Diqqat",
-    "Calendar" : "Kalendar"
+    "Calendar" : "Kalendar",
+    "Search for your task..." : "Vazifangizni qidiring...",
+    "Tap + to add your tasks" : "Vazifalaringizni qoʻshish uchun + tugmasini bosing",
+    "What do you want to do today?" : "Bugun nima qilmoqchisiz?",
+    "Add" : "Qo'shish"
+
   }

@@ -105,7 +105,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           onTap: () {
                             if(_currentPage == (pages.length - 1)){
                               Navigator.push(
-                                context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                                context, MaterialPageRoute(builder: (context) => const StartScreenPage()));
                             }
                             else {
                               _controller.nextPage(
